@@ -1,4 +1,5 @@
 import random
+import constants
 from typing import List, Dict
 
 """
@@ -8,9 +9,24 @@ We have started this for you, with a function to help remove the 'neck' directio
 from the list of possible moves!
 """
 
-def generate_map(map: dict) -> List[List[int]]:
-    # TODO: make constants for types of things
-    ...
+# TODO: keep track of my own length
+
+def generate_board(map: dict) -> List[List[int]]:
+    width = map["width"]
+    height = map["height"]
+
+    board = [[constants.EMPTY] * width] * height
+
+    for food in map["food"]:
+        board[food["x"]][food["y"]] = constants.FOOD
+
+    for snake in map["snakes"]:
+        for tile in snake["body"]:
+            board[tile["x"]][tile["y"]] = constants.WALL
+    
+    return board
+    
+    # TODO: populate snake heads with their length
 
 
 def flood_fill(map: dict) -> int:
