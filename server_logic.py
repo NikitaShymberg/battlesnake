@@ -24,16 +24,16 @@ def generate_board(map: dict) -> List[List[int]]:
         for tile in snake["body"]:
             board[tile["x"]][tile["y"]] = constants.WALL
     
-    return board
-    
     # TODO: populate snake heads with their length
 
+    return board
 
-def flood_fill(map: dict) -> int:
+
+def flood_fill(map: List[List[int]]) -> int:
     ...
 
 
-def avoid_collision(map: dict, possible_moves: List[str]) -> bool:
+def avoid_collision(map: List[List[int]], possible_moves: List[str]) -> bool:
     ...
 
 
@@ -92,6 +92,8 @@ def choose_move(data: dict) -> str:
     # data["board"], data["game"], data["you"], data["turn"] Look at these!
     # board_height = ?
     # board_width = ?
+    board = generate_board(data["board"])
+    print(board)
 
     # TODO Using information from 'data', don't let your Battlesnake pick a move that would hit its own body
 
