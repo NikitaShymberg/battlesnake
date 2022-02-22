@@ -95,7 +95,7 @@ def choose_move(data: dict) -> str:
     # board_width = ?
     board = generate_board(data["board"])
     print(f"BOARD STATE MOVE {data['turn']}")
-    pprint(board)
+    pprint.pprint(board)
     print("----------------")
 
     # TODO Using information from 'data', don't let your Battlesnake pick a move that would hit its own body
