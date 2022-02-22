@@ -1,6 +1,7 @@
 import random
 import constants
 from typing import List, Dict
+import pprint
 
 """
 This file can be a nice home for your move logic, and to write helper functions.
@@ -93,7 +94,9 @@ def choose_move(data: dict) -> str:
     # board_height = ?
     # board_width = ?
     board = generate_board(data["board"])
-    print(board)
+    print(f"BOARD STATE MOVE {data['turn']}")
+    pprint(board)
+    print("----------------")
 
     # TODO Using information from 'data', don't let your Battlesnake pick a move that would hit its own body
 
