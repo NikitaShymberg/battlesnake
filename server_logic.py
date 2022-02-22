@@ -8,6 +8,18 @@ We have started this for you, with a function to help remove the 'neck' directio
 from the list of possible moves!
 """
 
+def generate_map(map: dict) -> List[List[int]]:
+    # TODO: make constants for types of things
+    ...
+
+
+def flood_fill(map: dict) -> int:
+    ...
+
+
+def avoid_collision(map: dict, possible_moves: List[str]) -> bool:
+    ...
+
 
 def avoid_my_neck(my_head: Dict[str, int], my_body: List[dict], possible_moves: List[str]) -> List[str]:
     """
@@ -61,6 +73,7 @@ def choose_move(data: dict) -> str:
     possible_moves = avoid_my_neck(my_head, my_body, possible_moves)
 
     # TODO: Using information from 'data', find the edges of the board and don't let your Battlesnake move beyond them
+    # data["board"], data["game"], data["you"], data["turn"] Look at these!
     # board_height = ?
     # board_width = ?
 
