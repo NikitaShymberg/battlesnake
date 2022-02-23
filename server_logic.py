@@ -1,5 +1,6 @@
 import random
 import constants
+import numpy as np
 from typing import List, Dict
 import pprint
 
@@ -10,14 +11,13 @@ We have started this for you, with a function to help remove the 'neck' directio
 from the list of possible moves!
 """
 
-# TODO: keep track of my own length
-
 def generate_board(map: dict) -> List[List[int]]:
     width = map["width"]
     height = map["height"]
 
-    board = [[constants.EMPTY] * width] * height
+    board = np.zeros((width, height))
 
+    # Find a way to test locally
     for food in map["food"]:
         board[food["x"]][food["y"]] = constants.FOOD
 
@@ -34,7 +34,7 @@ def flood_fill(map: List[List[int]]) -> int:
     ...
 
 
-def avoid_collision(map: List[List[int]], possible_moves: List[str]) -> bool:
+def avoid_collision(map: List[List[int]], possible_moves: List[str]) -> List[str]:
     ...
 
 
@@ -111,3 +111,58 @@ def choose_move(data: dict) -> str:
     print(f"{data['game']['id']} MOVE {data['turn']}: {move} picked from all valid options in {possible_moves}")
 
     return move
+
+
+if __name__ == "__main__":
+    # "tests"
+    data = {
+        "turn": 10, 
+        "game": {
+            "id": "totally-unique-game-id",
+            "ruleset": {
+                "name": "standard",
+                "version": "v1.2.3"
+                },
+            "timeout": 500,
+            "source": "league"
+            },
+        "you": {
+            "head": {
+                "x": 0,
+                "y": 0
+            },
+            "body": [
+                {"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}
+                ]
+        },
+        "board": {
+            "width": 11,
+            "height": 11,
+            "food": [
+                {"x": 1, "y": 1},
+                {"x": 1, "y": 2},
+                {"x": 2, "y": 3}
+            ],
+            "snakes": [{
+                "id": "totally-unique-snake-id",
+                "name": "Sneky McSnek Face",
+                "health": 54,
+                "body": [
+                    {"x": 0, "y": 0}, 
+                    {"x": 1, "y": 0}, 
+                    {"x": 2, "y": 0}
+                ],
+                "latency": "123",
+                "head": {"x": 0, "y": 0},
+                "length": 3,
+                "shout": "why are we shouting??",
+                "squad": "1",
+                "customizations":{
+                            "color":"#26CF04",
+                            "head":"smile",
+                            "tail":"bolt"
+                            }
+                }]
+        }
+    }
+    choose_move(data)
